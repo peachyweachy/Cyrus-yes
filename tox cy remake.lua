@@ -109,8 +109,8 @@ local Rainbowdelay = 0
 local BlinkSpeed = 1.5
 local NormalHH = 0
 local SpamDelay = 0
-local AimbotVelocity = 6.5
-local NewPredictionVelocity = 6.5
+local AimbotVelocity = 7.5
+local NewPredictionVelocity = 7.5
 local GravGunDistance = 5
 local CrouchSpeed = 8
 local FlySpeed = 10.5
@@ -285,7 +285,7 @@ local SettingsTable = {
 	CrouchSpeed = 8;
 	AimMode = "OldPrediction";
 	AimlockMode = "LeftClick";
-	AimbotVelocity = 6.5;
+	AimbotVelocity = 7.5;
 	CmdBarImage = "http://www.roblox.com/asset/?id=2812081613";
 	CmdBarKey = "Quote"
 }
@@ -408,7 +408,7 @@ getgenv().runHotkeys = function(ConfigToRun)
 	CrouchSpeed = RunSettings.CrouchSpeed or 16
 	AimMode = RunSettings.AimMode or "OldPrediction";
 	AimlockMode = RunSettings.AimlockMode or "LeftClick"
-	AimbotVelocity = RunSettings.AimbotVelocity or 6.5
+	AimbotVelocity = RunSettings.AimbotVelocity or 7.5
 	CmdBarImage = RunSettings.CmdBarImage or "http://www.roblox.com/asset/?id=2812081613"
 	CmdBarKey = RunSettings.CmdBarKey or "Quote"
 end
@@ -3229,7 +3229,7 @@ coroutine.resume(coroutine.create(function()
 				if Magnitude > 0 then
 					NewPredictionVelocity = Magnitude
 				else
-					NewPredictionVelocity = 6.5
+					NewPredictionVelocity = 7.5
 				end
 				AimlockTargetPosition = AimlockTarget.Torso.Position
 			else
