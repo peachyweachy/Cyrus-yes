@@ -93,6 +93,7 @@ local UseDrawingLib = pcall(assert,Drawing,'Hi')
 local WalkShoot = false
 local AntiAim2 = false
 local TeleportBypass2 = false
+local SetClanTag = false
 
 -- Strings -- 
  
@@ -1997,6 +1998,34 @@ AddCommand(function()
 		end
 	end
 end,"draggablegui",{},"Makes your HUD draggable","[No Args]")
+	
+AddCommand(function()
+	if SetClanTag = true then		
+    Tag = typeof(Tag) == "string" and Tag or ""
+    Tag = string.rep("\n", 100 - #Tag) .. Tag
+    Network:Send(Enums.NETWORK.SET_GROUP, 1, Tag)
+
+    --[[
+    Stank.OnServerEvent:Connect(function(Player, Method, ...)
+        if Method == "pick" then
+            local GroupFrame = ...
+            local Role = Player:GetRoleInGroup(GroupFrame.Name)
+            local GroupName = GroupFrame.TextLabel.Text
+
+            local X = GroupName .. "\n" .. Role .. "\n" .. Player.Name -- something like this
+            db:set(Player, "clan", X) -- not sure if it saves the string or the group_id and group_role
+
+            -- gets created everytime when player spawns
+            ClanModel.Name = X
+
+            -- when the player spawns
+            ClanModel = Instance.new("Model")
+            ClanModel.Name = db:get(Player, "clan") -- will error though if it's malformed
+            ClanModel.Parent = Player.Character
+        end
+    end)
+    ]]
+end,"ClanTagChanger",{"CT [name]"},"Changes your clantag","[No Args]")	
 
 AddCommand(function(Arguments)
 	if not Arguments[1] then 
